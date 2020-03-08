@@ -1,0 +1,41 @@
+<div fxLayout="row">
+    <div fxFlex.gt-sm="100%" >
+        <mat-card>
+            <mat-card-content>
+              <mat-card-title>Que se iniciem os JOGOSSS</mat-card-title>
+                <mat-card-subtitle>
+                  Você foi convocado a participar do mais empolgante desafio de sua vida: acabar com os intermináveis conflitos em Valoran. 
+                  A nação humana de Demacia, o assombroso império de Noxus e os moradores de todas as cidades-estado aguardam ansiosamente 
+                  por este momento.
+                </mat-card-subtitle>
+                <mat-card-subtitle>
+                  Para isso ocorrerá um torneio onde o reino do vencedor terá o poder de controlar todos os outros em Valoran 
+                  quem irá ganhar este torneio!!!
+                </mat-card-subtitle>
+                <mat-grid-list cols="3" rowHeight="100px">
+                  <mat-grid-tile
+                      *ngFor="let tile of tableVictories"
+                      [colspan]="tile.cols"
+                      [rowspan]="tile.rows">
+                    <mat-button-toggle-group [style.background]="tile.itemDetails.color">
+                      <mat-button-toggle [style.background]="tile.itemDetails.color" disabled>
+                        <b>{{tile.itemDetails.text}}</b>
+                      </mat-button-toggle>
+                      <mat-button-toggle matTooltip="Adicionar Equipe" 
+                          *ngIf="!tile.itemDetails.color && tile.isAdd" (click)="openDialog(tile)">
+                        <mat-icon>add</mat-icon>
+                      </mat-button-toggle>
+                      <mat-button-toggle matTooltip="Click para a proxima fase!" *ngIf="tile.itemDetails.color && tile.id != 7" (click)="nextTrial(tile)">
+                        <mat-icon>play_arrow</mat-icon>
+                      </mat-button-toggle>
+                    </mat-button-toggle-group>
+                  </mat-grid-tile>
+                </mat-grid-list>
+
+                <div class="button-row">
+                  <button mat-button color="primary" (click)="createChampionship()">Criar novo Campeonato</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
